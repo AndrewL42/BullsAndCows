@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BullsAndCows
 {
-    enum MediumWords
+    enum NormalWords
     {
         brick,
         jumpy,
@@ -13,6 +13,6 @@ namespace BullsAndCows
         savior,
         cigar,
         frogs,
-        train,
+        train
     }
 }
