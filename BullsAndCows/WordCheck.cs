@@ -16,21 +16,21 @@ namespace BullsAndCows
             {
                 Array values = Enum.GetValues(typeof(EasyWords));
                 EasyWords randomWord = (EasyWords)values.GetValue(RNG.Next(values.Length));
-                Program.setNumOfTires(5);
+                Program.setNumOfTires(9);
                 return randomWord;
             }
             else if (word.Equals(Difficulties.Normal.ToString().ToLower()))
             {
                 Array values = Enum.GetValues(typeof(NormalWords));
                 NormalWords randomWord = (NormalWords)values.GetValue(RNG.Next(values.Length));
-                Program.setNumOfTires(8);
+                Program.setNumOfTires(12);
                 return randomWord;
             }
             else if (word.Equals(Difficulties.Hard.ToString().ToLower()))
             {
                 Array values = Enum.GetValues(typeof(HardWords));
                 HardWords randomWord = (HardWords)values.GetValue(RNG.Next(values.Length));
-                Program.setNumOfTires(13);
+                Program.setNumOfTires(16);
                 return randomWord;
             }
             else

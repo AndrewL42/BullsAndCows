@@ -6,7 +6,6 @@ namespace BullsAndCows
     {
         static string hiddenWord = "";
         static string userResponse = "";
-        static string difficulty = "";
         static int numOfTries = 0;
         static int currentAttempt = 0;
         static int numOfBulls = 0;
@@ -55,7 +54,6 @@ namespace BullsAndCows
                 Console.WriteLine("=====================================================================================\n");
                 String possibleError = null;
                 Console.WriteLine("Guess an isogramic word!\n");
-                Console.WriteLine(hiddenWord);
                 userResponse = Console.ReadLine().ToLower();
                 possibleError = WordCheck.validString(userResponse);
 
@@ -113,8 +111,7 @@ namespace BullsAndCows
         {
             hiddenWord = "";
             userResponse = "";
-            difficulty = "";
-            numOfTries = 0;
+            currentAttempt = 0;
             numOfBulls = 0;
             numOfCows = 0;
         }
