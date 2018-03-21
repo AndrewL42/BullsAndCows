@@ -52,39 +52,60 @@ namespace BullsAndCows
         {
             while (currentAttempt < numOfTries)
             {
+                Console.WriteLine("=====================================================================================\n");
+                String possibleError = null;
                 Console.WriteLine("Guess an isogramic word!\n");
                 Console.WriteLine(hiddenWord);
                 userResponse = Console.ReadLine().ToLower();
+                possibleError = WordCheck.validString(userResponse);
 
-
-                if (userResponse.Equals(hiddenWord))
+                if (possibleError.Equals(Errors.None.ToString()))
                 {
-                    Console.WriteLine("Congratulations, you got the word right! It was: " + hiddenWord + ". Would you like to play again? Y/N");
-                    userResponse = Console.ReadLine();
-                    if (userResponse.Equals("y"))
+                    if (userResponse.Equals(hiddenWord))
                     {
-                        playingGame = true;
-                        Console.WriteLine("\nYou have decided to play again! Please wait a moment while we reset everything...");
-                        System.Threading.Thread.Sleep(2000);
-                        System.Console.Clear();
-                        resetGame();
+                        Console.WriteLine("Congratulations, you got the word right! It was: " + hiddenWord + ". Would you like to play again? Y/N");
+                        userResponse = Console.ReadLine();
+                        if (userResponse.Equals("y"))
+                        {
+                            playingGame = true;
+                            Console.WriteLine("\nYou have decided to play again! Please wait a moment while we reset everything...");
+                            System.Threading.Thread.Sleep(2000);
+                            System.Console.Clear();
+                            resetGame();
+                            return;
+                        }
+                        else if (userResponse.Equals("n"))
+                        {
+                            System.Console.Clear();
+                            playingGame = false;
+                            Console.WriteLine("Thanks for playing! Terminating program.");
+                            return;
+                        }
+                        else
+                        {
+                            System.Console.Clear();
+                            playingGame = false;
+                            Console.WriteLine("You did not choose a valid option! Ending game.");
+                            return;
+                        }
                     }
-                    else if (userResponse.Equals("n"))
-                    {
-                        playingGame = false;
-                        Console.WriteLine("Thanks for playing! Terminating program.");
-                    }
-                    else
-                    {
-                        playingGame = false;
-                        Console.WriteLine("You did not choose a valid option! Ending game.");
-                    }
+                    WordCheck.checkGuess(userResponse);
+                    Console.WriteLine("The number of bulls you got are: " + numOfBulls + ".\nThe number of cows you got are: " + numOfCows + ".\nYou have used " + currentAttempt + " out of " + numOfTries + " attempts.\n");
                 }
-
-                WordCheck.checkGuess(userResponse);
-                Console.WriteLine("The number of bulls you got are: " + numOfBulls + ".\nThe number of cows you got are: " + numOfCows + ".\nYou have used " + currentAttempt + " out of " + numOfTries + " attempts.");
+                else if (possibleError.Equals(Errors.NotAnIsogram.ToString()))
+                {
+                    Console.WriteLine("You have not entered an isogram! Please enter an isogram.\n");
+                }
+                else if (possibleError.Equals(Errors.WordLengthTooLong.ToString()))
+                {
+                    Console.WriteLine("The word you entered was too long! Please enter a " + getHiddenWord().Length + " letter word!\n");
+                }
+                else if (possibleError.Equals(Errors.WordLengthTooShort.ToString()))
+                {
+                    Console.WriteLine("The word you entered was too short! Please enter a " + getHiddenWord().Length + " letter word!\n");
+                }
             }
-
+            endGame();
         }
 
 
@@ -94,13 +115,14 @@ namespace BullsAndCows
             userResponse = "";
             difficulty = "";
             numOfTries = 0;
-            StartGame();
+            numOfBulls = 0;
+            numOfCows = 0;
         }
 
         public static void endGame()
         {
             Console.WriteLine("Sorry, you've used up all your attempts and have lost!\n" +
-                "The secret word was" + hiddenWord + ". Better luck next time!\n" +
+                "The secret word was " + hiddenWord + ". Better luck next time!\n" +
                 "Would you like to try again? Y/N");
             userResponse = Console.ReadLine();
             if (userResponse.ToLower() == "y")

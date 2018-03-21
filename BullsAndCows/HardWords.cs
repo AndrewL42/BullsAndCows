@@ -9,7 +9,7 @@ namespace BullsAndCows
         isogram,
         nomadic,
         watched,
-        Tuesday,
+        tuesday,
         rapidly,
         obesity,
         advise,
@@ -17,10 +17,7 @@ namespace BullsAndCows
         aerobics,
         agonized,
         grateful,
-        hardware,
-        function,
         scenario,
         tangible,
-        transfer
     }
 }
